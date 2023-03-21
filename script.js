@@ -4,11 +4,22 @@ kaboom({
 })
 
 // sprites
-loadSprite('cat', 'img/_.png')
-loadSprite('enemy', 'img/_.png')
-loadSprite('octo-coin', 'img/_.png')
-loadSprite('orange-block', 'img/_.png')
-loadSprite('yellow-block', 'img/_.png')
-loadSprite('green-block', 'img/_.png')
-loadSprite('blue-block', 'img/_.png')
-loadSprite()
+loadSprite('cat', 'img/cat.png')
+// loadSprite('enemy', 'img/enemy.png')
+loadSprite('octo-coin', 'img/coin.png')
+loadSprite('orange-block', 'img/orange.png')
+loadSprite('yellow-block', 'img/yellow.png')
+loadSprite('green-block', 'img/green.png')
+loadSprite('blue-block', 'img/blue.png')
+
+scene('game', () =>{
+    var player = add([
+        sprite('cat'),
+        pos(30,40),
+        area(),
+        body(),
+    ])
+
+
+})
+
