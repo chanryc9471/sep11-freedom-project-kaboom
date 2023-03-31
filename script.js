@@ -9,7 +9,7 @@ kaboom({
 })
 
 // SPRITES
-loadSprite('cat', 'img/cat.png')
+loadSprite('char', 'img/char.png')
 // loadSprite('enemy', 'img/enemy.png')
 loadSprite('octo-coin', 'img/coin.png')
 loadSprite('orange-block', 'img/orange.png')
@@ -71,7 +71,7 @@ const map = [
 const gameLevel = addLevel(map,levelCfg)
 
 	const player = add([
-		sprite('cat'),solid(),
+		sprite('char'),solid(),
 		pos(30,0),
 		body(),
 		origin('bot')
