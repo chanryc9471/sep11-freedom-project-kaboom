@@ -46,7 +46,7 @@ const map = [
 		'                                     ',
 		'                                     ',
 		'                                     ',
-		'= = = = = = = =       = = = =        ',
+		'========       =====    =======      ',
 
 ]
 
@@ -62,8 +62,8 @@ const map = [
 	// ])
 
 	const levelCfg = {
-		width:30,
-		height:30,
+		width:60,
+		height:60,
 		'=': [sprite('orange-block'),solid()]
 
 	}
