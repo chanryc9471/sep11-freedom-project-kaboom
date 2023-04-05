@@ -11,7 +11,7 @@ kaboom({
 // SPRITES
 loadSprite('char', 'img/char.png')
 // loadSprite('enemy', 'img/enemy.png')
-loadSprite('octo-coin', 'img/coin.png')
+loadSprite('coin', 'img/coin.png')
 loadSprite('orange-block', 'img/orange.png')
 loadSprite('yellow-block', 'img/yellow.png')
 loadSprite('green-block', 'img/green.png')
@@ -43,10 +43,10 @@ const map = [
 		'                                     ',
 		'                                     ',
 		'                                     ',
+		'          ##                         ',
+		'         ====                        ',
 		'                                     ',
-		'                                     ',
-		'                                     ',
-		'========       =====    =======      ',
+		'========      =======    =======     ',
 
 ]
 
@@ -62,13 +62,24 @@ const map = [
 	// ])
 
 	const levelCfg = {
-		width:60,
-		height:60,
-		'=': [sprite('orange-block'),solid()]
+		width:50,
+		height:50,
+		'=': [sprite('orange-block'),solid()],
+		'#': [sprite('coin'),solid()]
 
 	}
 
 const gameLevel = addLevel(map,levelCfg)
+	// const scoreLabel = add([
+	// 	text('test'),
+	// 	pos(30,6),
+	// 	layer('ui')
+	// 	{
+	// 		value: 'test',
+	// 	}
+	// ])
+
+	// add([text('level' + 'test', pos(4,6))])
 
 	const player = add([
 		sprite('char'),solid(),
@@ -76,6 +87,20 @@ const gameLevel = addLevel(map,levelCfg)
 		body(),
 		origin('bot')
 	])
+
+	const MOVE_SPEED = 120
+
+	keyDown('left',()=>{
+		player.move(-MOVE_SPEED,0)
+	})
+
+	keyDown('right',()=>{
+		player.move(MOVE_SPEED,0)
+	})
+
+	// keyPress('space',()=>{
+
+	// })
 })
 
 start('game')
