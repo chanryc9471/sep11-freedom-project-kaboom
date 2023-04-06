@@ -12,10 +12,12 @@ kaboom({
 loadSprite('char', 'img/char.png')
 // loadSprite('enemy', 'img/enemy.png')
 loadSprite('coin', 'img/coin.png')
+loadSprite('door', 'img/door.png')
 loadSprite('orange-block', 'img/orange.png')
 loadSprite('yellow-block', 'img/yellow.png')
 loadSprite('green-block', 'img/green.png')
 loadSprite('blue-block', 'img/blue.png')
+
 
 
 
@@ -45,7 +47,7 @@ const map = [
 		'                                     ',
 		'          ##                         ',
 		'         ====                        ',
-		'                                     ',
+		'                 &                    ',
 		'========      =======    =======     ',
 
 ]
@@ -62,10 +64,11 @@ const map = [
 	// ])
 
 	const levelCfg = {
-		width:50,
-		height:50,
+		width:45,
+		height:45,
 		'=': [sprite('orange-block'),solid()],
-		'#': [sprite('coin'),solid()]
+		'#': [sprite('coin'),solid()],
+		'&': [sprite('door'), solid()]
 
 	}
 
