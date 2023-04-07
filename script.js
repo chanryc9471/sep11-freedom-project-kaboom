@@ -1,5 +1,5 @@
 // START THE GAME
-kaboom({
+kaboom ({
 	global:true,
 	fullscreen: true,
 	scale: 1,
@@ -21,15 +21,6 @@ loadSprite('blue-block', 'img/blue.png')
 
 
 
-
-
-// // LOAD SPRITES
-// const player = add([
-//         sprite('cat'),
-//         pos(30,400),
-//         area(),
-//         body(),
-//     ])
 
 scene('game', () => {
 	layers(['bg','obj','ui'], 'obj')
@@ -53,15 +44,6 @@ const map = [
 ]
 
 
-	// define each object as a componenet
-
-	// // LOAD SPRITES
-	// const player = add([
-	// 	sprite('cat'),
-	// 	pos(30,400),
-	// 	area(),
-	// 	body(),
-	// ])
 
 	const levelCfg = {
 		width:45,
@@ -72,17 +54,19 @@ const map = [
 
 	}
 
-const gameLevel = addLevel(map,levelCfg)
-	// const scoreLabel = add([
-	// 	text('test'),
-	// 	pos(30,6),
-	// 	layer('ui')
-	// 	{
-	// 		value: 'test',
-	// 	}
-	// ])
+	const gameLevel = addLevel(map,levelCfg)
 
-	// add([text('level' + 'test', pos(4,6))])
+	const scoreLabel = add([
+		text('test'),
+		pos(30,6),
+		layer('ui'),
+		{
+			value: 'test',
+		}
+	])
+
+	add([text('level' + 'test', pos(4,6))])
+
 
 	const player = add([
 		sprite('char'),solid(),
