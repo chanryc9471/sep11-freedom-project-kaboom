@@ -22,7 +22,7 @@ loadSprite('blue-block', 'img/blue.png')
 
 
 
-scene('game', () => {
+scene('game', ({score}) => {
 	layers(['bg','obj','ui'], 'obj')
 
 
@@ -36,10 +36,10 @@ const map = [
 		'                                     ',
 		'                                     ',
 		'                                     ',
-		'          ##                         ',
+		'          ###                        ',
 		'         ====                        ',
 		'                 &                   ',
-		'========      =======    =======     ',
+		'========       ======    =======     ',
 
 ]
 
@@ -49,7 +49,7 @@ const map = [
 		width:45,
 		height:45,
 		'=': [sprite('orange-block'),solid()],
-		'#': [sprite('coin'),solid()],
+		'#': [sprite('coin'), 'coin'],
 		'&': [sprite('door'), solid()]
 
 	}
@@ -57,15 +57,15 @@ const map = [
 	const gameLevel = addLevel(map,levelCfg)
 
 	const scoreLabel = add([
-		text('test'),
-		pos(30,6),
+		text(score),
+		pos(30,200),
 		layer('ui'),
 		{
-			value: 'test',
+			value: score,
 		}
 	])
 
-	add([text('level' + 'test', pos(4,6))])
+	add([text('level' + 'score', pos(4,6))])
 
 
 	const player = add([
@@ -75,8 +75,22 @@ const map = [
 		origin('bot')
 	])
 
-	const MOVE_SPEED = 120
+	const MOVE_SPEED = 150
+	const JUMP_FORCE = 450
+	const DEATH = 600
 
+	player.collides('coin', (c)=>{
+	destroy(c)
+	scoreLabel.value++
+	scoreLabel.text = scoreLabel.value
+	})
+
+	player.action(() => {
+		camPos(player.pos)
+		if(player.pos.y >= DEATH){
+			go('lose', {score: scoreLabel.value})
+		}
+	})
 	keyDown('left',()=>{
 		player.move(-MOVE_SPEED,0)
 	})
@@ -85,9 +99,15 @@ const map = [
 		player.move(MOVE_SPEED,0)
 	})
 
-	// keyPress('space',()=>{
-
-	// })
+	keyPress('space',()=>{
+		if(player.grounded()){
+			player.jump(JUMP_FORCE)
+		}
+	})
 })
 
-start('game')
+scene('lose', ({score}) =>{
+	add([text(score,32), origin('center'), pos(width()/2, height()/2)])
+})
+
+start('game', {score:0})
