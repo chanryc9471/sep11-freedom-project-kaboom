@@ -117,6 +117,7 @@ const maps = [
 
 	player.collides('enemy', (e)=> {
 		destroy(e)
+		go('lose', {score: scoreLabel.value})
 	})
 
 	action('enemy', (e)=> {
