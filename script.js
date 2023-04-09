@@ -5,6 +5,7 @@ kaboom ({
 	scale: 1,
 	debug: true,
 	clearColor: [0,2,1,1],
+	background: [176, 201, 217]
 
 })
 
@@ -13,9 +14,9 @@ loadSprite('char', 'img/char.png')
 loadSprite('enemy', 'img/enemy.png')
 loadSprite('coin', 'img/coin.png')
 loadSprite('door', 'img/door.png')
-loadSprite('orange-block', 'img/orange.png')
-loadSprite('yellow-block', 'img/yellow.png')
-loadSprite('green-block', 'img/green.png')
+loadSprite('o-block', 'img/orange.png')
+loadSprite('y-block', 'img/yellow.png')
+loadSprite('g-block', 'img/green.png')
 // loadSprite('blue-block', 'img/blue.png')
 
 
@@ -62,14 +63,14 @@ const maps = [
 		'                                     ',
 		'                                     ',
 		'                                     ',
-		'                                     ',
-		'                                     ',
-		'                                     ',
-		'                                     ',
-		'                                     ',
-		'                                     ',
-		'                                     ',
-		'                                     ',
+		'                      %%%%           ',
+		'                         %           ',
+		'                      ###%           ',
+		'                     %%%%%           ',
+		'           #     @              ',
+		'      #   %%%   %%%            &     ',
+		'     %%%      @           %%%%%%     ',
+		'%%%         %%%%%    %%%             ',
 
 	],
 
@@ -80,11 +81,12 @@ const maps = [
 	const levelCfg = {
 		width:45,
 		height:50,
-		'=': [sprite('orange-block'),solid()],
+		'=': [sprite('o-block'),solid()],
 		'#': [sprite('coin'), 'coin'],
 		'&': [sprite('door'), 'door'],
-		'!': [sprite('yellow-block'),solid()],
-		'@': [sprite('enemy'),'enemy',solid(), body()]
+		'!': [sprite('y-block'),solid()],
+		'@': [sprite('enemy'),'enemy',solid(), body()],
+		'%': [sprite('g-block'),solid()]
 
 	}
 
@@ -109,7 +111,7 @@ const maps = [
 		origin('bot')
 	])
 
-	const MOVE_SPEED = 200
+	const MOVE_SPEED = 250
 	const JUMP_FORCE = 500
 	const DEATH = 800
 
