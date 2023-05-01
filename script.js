@@ -158,10 +158,10 @@ const maps = [
 
 scene('lose', ({score}) =>{
 	add([text(score,32), origin('center'), pos(width()/2, height()/2)])
-	
-	keyDown(()=>{
+
+	keyPress('space', ()=>{
 		go('game', {level:0, score:0})
-	}
+	})
 })
 
 start('game', {level:0, score:0})
