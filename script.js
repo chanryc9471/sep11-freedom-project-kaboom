@@ -161,7 +161,7 @@ scene('lose', ({score}) =>{
 	
 	keyDown(()=>{
 		go('game', {level:0, score:0})
-	}
+	})
 })
 
 start('game', {level:0, score:0})
