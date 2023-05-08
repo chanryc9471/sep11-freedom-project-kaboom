@@ -28,7 +28,7 @@ scene('game', ({level, score}) => {
 
 
 // GAME MAP
-const maps = [
+var maps = [
 	[
 
 		'                                     ',
@@ -78,7 +78,7 @@ const maps = [
 
 
 
-	const levelCfg = {
+	var levelCfg = {
 		width:45,
 		height:50,
 		'=': [sprite('o-block'),solid()],
@@ -90,9 +90,9 @@ const maps = [
 
 	}
 
-	const gameLevel = addLevel(maps[level],levelCfg)
+	var gameLevel = addLevel(maps[level],levelCfg)
 
-	const scoreLabel = add([
+	var scoreLabel = add([
 		text(score),
 		pos(0,300),
 		layer('ui'),
@@ -104,16 +104,16 @@ const maps = [
 	add([text('level ' + parseInt(level + 1)), pos(20,300)])
 
 
-	const player = add([
+	var player = add([
 		sprite('char'),solid(),
 		pos(30,0),
 		body(),
 		origin('bot')
 	])
 
-	const MOVE_SPEED = 250
-	const JUMP_FORCE = 500
-	const DEATH = 800
+	var MOVE_SPEED = 250
+	var JUMP_FORCE = 500
+	var DEATH = 800
 
 	player.collides('enemy', (e)=> {
 		destroy(e)
