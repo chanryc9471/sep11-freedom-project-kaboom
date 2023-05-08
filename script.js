@@ -17,7 +17,7 @@ loadSprite('door', 'img/door.png')
 loadSprite('o-block', 'img/orange.png')
 loadSprite('y-block', 'img/yellow.png')
 loadSprite('g-block', 'img/green.png')
-// loadSprite('blue-block', 'img/blue.png')
+// loadSprite('blue-block', 'img/blue.png') // for more levelz
 
 
 
