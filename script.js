@@ -54,9 +54,9 @@ const maps = [
 		'                       @ ##     &    ',
 		'                !!!!!!!!!!!!   !!!   ',
 		'       ##  !!!                       ',
-		'      !!!!                           ',
+		'      !!!!                   !!!     ',
 		'  ##      @                          ',
-		'!!!!!!!!!!!!!!!!!!      !!!!!!!!     ',
+		'!!!!!!!!!!!!!!!!!!   !!!!!!!!        ',
 
 	],
 	[
@@ -94,6 +94,7 @@ const maps = [
 
 	const scoreLabel = add([
 		text(score),
+
 		pos(0,300),
 		layer('ui'),
 		{
@@ -121,7 +122,7 @@ const maps = [
 	})
 
 	action('enemy', (e)=> {
-		e.move(-25,0)
+		e.move(-30,0)
 	})
 	player.collides('coin', (c)=>{
 	destroy(c)
@@ -157,7 +158,7 @@ const maps = [
 })
 
 scene('lose', ({score}) =>{
-	add([text(score,32), origin('center'), pos(width()/2, height()/2)])
+	add([text(score,100), origin('center'), pos(width()/2, height()/2)])
 })
 
 start('game', {level:0, score:0})
