@@ -96,7 +96,7 @@ var maps = [
 	var gameLevel = addLevel(maps[level],levelCfg)
 console.log(mousePos('enemy'))
 	var scoreLabel = add([
-		text(score + "-", 30),
+		text(score, 30),
 		pos(0,300),
 		layer('ui'),
 		{
