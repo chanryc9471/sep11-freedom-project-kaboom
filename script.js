@@ -51,12 +51,12 @@ var maps = [
 		'                                     ',
 		'                                     ',
 		'                                     ',
-		'                       @ ##     &    ',
+		'                   @     ##     &    ',
 		'                !!!!!!!!!!!!   !!!   ',
 		'       #   !!!                       ',
-		'      !!!                            ',
-		'  ##      @                          ',
-		'!!!!!!!!!!!!!!!!!!      !!!!!!!!     ',
+		'      !!!                    !       ',
+		'  ##      @                 !!       ',
+		'!!!!!!!!!!!!!!!!!!    !!!!!!!!!!     ',
 
 	],
 	[
@@ -67,7 +67,7 @@ var maps = [
 		'                         %           ',
 		'                      ###%           ',
 		'                     %%%%%           ',
-		'           #     @              ',
+		'           #     @                   ',
 		'      #   %%%   %%%            &     ',
 		'     %%%      @           %%%%%%     ',
 		'%%%         %%%%%    %%%             ',
@@ -76,7 +76,10 @@ var maps = [
 
 ]
 
-
+	var MOVE_SPEED = 250
+	var JUMP_FORCE = 500
+	var DEATH = 800
+	var ENEMY_SPEED = -60
 
 	var levelCfg = {
 		width:45,
@@ -85,15 +88,15 @@ var maps = [
 		'#': [sprite('coin'), 'coin'],
 		'&': [sprite('door'), 'door'],
 		'!': [sprite('y-block'),solid()],
-		'@': [sprite('enemy'),'enemy',solid(), body()],
+		'@': [sprite('enemy'),'enemy',solid(), body(), {speed: ENEMY_SPEED}],
 		'%': [sprite('g-block'),solid()]
 
 	}
 
 	var gameLevel = addLevel(maps[level],levelCfg)
-
+console.log(mousePos('enemy'))
 	var scoreLabel = add([
-		text(score),
+		text(score + "-", 30),
 		pos(0,300),
 		layer('ui'),
 		{
@@ -101,7 +104,7 @@ var maps = [
 		}
 	])
 
-	add([text('level ' + parseInt(level + 1)), pos(20,300)])
+	add([text('level ' + parseInt(level + 1), 30), pos(60,300)])
 
 
 	var player = add([
@@ -111,9 +114,7 @@ var maps = [
 		origin('bot')
 	])
 
-	var MOVE_SPEED = 250
-	var JUMP_FORCE = 500
-	var DEATH = 800
+
 
 	player.collides('enemy', (e)=> {
 		destroy(e)
@@ -121,7 +122,11 @@ var maps = [
 	})
 
 	action('enemy', (e)=> {
-		e.move(-25,0)
+		e.move(e.speed,0)
+
+		if (e.pos.x > 500 || e.pos.x < 30){
+			e.speed = e.speed * -1
+		}
 	})
 	player.collides('coin', (c)=>{
 	destroy(c)
