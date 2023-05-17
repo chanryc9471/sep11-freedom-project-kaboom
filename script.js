@@ -17,7 +17,7 @@ loadSprite('door', 'img/door.png')
 loadSprite('o-block', 'img/orange.png')
 loadSprite('y-block', 'img/yellow.png')
 loadSprite('g-block', 'img/green.png')
-// loadSprite('blue-block', 'img/blue.png')
+// loadSprite('blue-block', 'img/blue.png') // for more levelz
 
 
 
@@ -28,7 +28,7 @@ scene('game', ({level, score}) => {
 
 
 // GAME MAP
-const maps = [
+var maps = [
 	[
 
 		'                                     ',
@@ -51,12 +51,12 @@ const maps = [
 		'                                     ',
 		'                                     ',
 		'                                     ',
-		'                       @ ##     &    ',
+		'                   @     ##     &    ',
 		'                !!!!!!!!!!!!   !!!   ',
-		'       ##  !!!                       ',
-		'      !!!!                   !!!     ',
-		'  ##      @                          ',
-		'!!!!!!!!!!!!!!!!!!   !!!!!!!!        ',
+		'       #   !!!                       ',
+		'      !!!                    !       ',
+		'  ##      @                 !!       ',
+		'!!!!!!!!!!!!!!!!!!    !!!!!!!!!!     ',
 
 	],
 	[
@@ -67,7 +67,7 @@ const maps = [
 		'                         %           ',
 		'                      ###%           ',
 		'                     %%%%%           ',
-		'           #     @              ',
+		'           #     @                   ',
 		'      #   %%%   %%%            &     ',
 		'     %%%      @           %%%%%%     ',
 		'%%%         %%%%%    %%%             ',
@@ -76,25 +76,27 @@ const maps = [
 
 ]
 
+	var MOVE_SPEED = 250
+	var JUMP_FORCE = 500
+	var DEATH = 800
+	var ENEMY_SPEED = -60
 
-
-	const levelCfg = {
+	var levelCfg = {
 		width:45,
 		height:50,
 		'=': [sprite('o-block'),solid()],
 		'#': [sprite('coin'), 'coin'],
 		'&': [sprite('door'), 'door'],
 		'!': [sprite('y-block'),solid()],
-		'@': [sprite('enemy'),'enemy',solid(), body()],
+		'@': [sprite('enemy'),'enemy',solid(), body(), {speed: ENEMY_SPEED}],
 		'%': [sprite('g-block'),solid()]
 
 	}
 
-	const gameLevel = addLevel(maps[level],levelCfg)
-
-	const scoreLabel = add([
-		text(score),
-
+	var gameLevel = addLevel(maps[level],levelCfg)
+	// console.log(mousePos('enemy'))
+	var scoreLabel = add([
+		text(score, 30),
 		pos(0,300),
 		layer('ui'),
 		{
@@ -102,19 +104,17 @@ const maps = [
 		}
 	])
 
-	add([text('level ' + parseInt(level + 1)), pos(20,300)])
+	add([text('level ' + parseInt(level + 1), 30), pos(65,300)])
 
 
-	const player = add([
+	var player = add([
 		sprite('char'),solid(),
 		pos(30,0),
 		body(),
 		origin('bot')
 	])
 
-	const MOVE_SPEED = 250
-	const JUMP_FORCE = 500
-	const DEATH = 800
+
 
 	player.collides('enemy', (e)=> {
 		destroy(e)
@@ -122,7 +122,11 @@ const maps = [
 	})
 
 	action('enemy', (e)=> {
-		e.move(-30,0)
+		e.move(e.speed,0)
+
+		if (e.pos.x > 500 || e.pos.x < 30){
+			e.speed = e.speed * -1
+		}
 	})
 	player.collides('coin', (c)=>{
 	destroy(c)
@@ -158,7 +162,11 @@ const maps = [
 })
 
 scene('lose', ({score}) =>{
-	add([text(score,100), origin('center'), pos(width()/2, height()/2)])
+	add([text(score,32), origin('center'), pos(width()/2, height()/2)])
+
+	keyPress('space', ()=>{
+		go('game', {level:0, score:0})
+	})
 })
 
 start('game', {level:0, score:0})
