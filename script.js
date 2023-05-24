@@ -159,6 +159,12 @@ console.log(mousePos('enemy'))
 			player.jump(JUMP_FORCE)
 		}
 	})
+
+	keyDown('up',()=>{
+		if(player.grounded()){
+			player.jump(JUMP_FORCE)
+		}
+	})
 })
 
 scene('lose', ({score}) =>{
