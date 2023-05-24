@@ -94,7 +94,7 @@ var maps = [
 	}
 
 	var gameLevel = addLevel(maps[level],levelCfg)
-console.log(mousePos('enemy'))
+	// console.log(mousePos('enemy'))
 	var scoreLabel = add([
 		text(score, 30),
 		pos(0,300),
@@ -104,7 +104,7 @@ console.log(mousePos('enemy'))
 		}
 	])
 
-	add([text('level ' + parseInt(level + 1), 30), pos(60,300)])
+	add([text('level ' + parseInt(level + 1), 30), pos(65,300)])
 
 
 	var player = add([
